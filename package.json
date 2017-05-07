@@ -1,0 +1,34 @@
+{
+  "name": "physical-express-middleware",
+  "version": "0.1.0",
+  "description": "Middleware for express to adapt Physical's downstream dependency checks to responses",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/garymcleanhall/physical-express-middleware.git"
+  },
+  "keywords": [
+    "physical",
+    "healthcheck",
+    "status",
+    "monitoring",
+    "express",
+    "dependency",
+    "middleware"
+  ],
+  "author": "Gary McLean Hall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garymcleanhall/physical-express-middleware/issues"
+  },
+  "homepage": "https://github.com/garymcleanhall/physical-express-middleware#readme",
+  "devDependencies": {
+    "express": "^4.15.2",
+    "jasmine": "^2.6.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}
