@@ -13,8 +13,10 @@ module.exports = (config) => {
       return accumulator
     }, {})
 
+    let status = checkers.every(item => item.result.isOk)
+
     response
-      .status(200)
+      .status(status ? 200 : 500)
       .send(healthchecks)
     next()
   }

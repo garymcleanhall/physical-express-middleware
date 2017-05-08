@@ -20,6 +20,13 @@ function _start() {
     ]
   }))
 
+  _app.use('/failures', physical.middleware({
+    dependencies: [
+      { name: 'google', checker: () => physical.http.check('http://google.com/') },
+      { name: 'broken', checker: () => physical.http.check('http://httpstat.us/500')}
+    ]
+  }))
+
   _server = _app.listen(9090)
 }
 
