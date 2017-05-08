@@ -1,10 +1,13 @@
 'use strict';
 
 const
-  express = require('express'),
-  physical = require('../../http/index')
-  physical.middleware = require('../index')
+  express = require('express')
 
+const physical = {
+  // todo: replace with local dummy, rather than assumed dependency on http
+  http: require('../../http/index'),
+  middleware: require('../index')
+}
 
 let _app = express()
 let _server = null
