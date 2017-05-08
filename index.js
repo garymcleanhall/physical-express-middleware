@@ -4,7 +4,7 @@ module.exports = (config) => {
   return async (request, response, next) => {
     
     let checkers = await Promise.all(config.dependencies.reduce((accumulator, current) => {
-      accumulator.push(current.checker().then(result => ({ name: current.name, result })))
+      accumulator.push(current.checker().then(result => Object.assign({ result }, current)))
       return accumulator
     }, []))
 
@@ -13,7 +13,7 @@ module.exports = (config) => {
       return accumulator
     }, {})
 
-    let status = checkers.every(item => item.result.isOk)
+    let status = checkers.every(item => item.result.isOk || item.optional)
 
     response
       .status(status ? 200 : 500)

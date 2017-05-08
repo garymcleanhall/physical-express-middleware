@@ -9,10 +9,10 @@ const physical = {
   middleware: require('../index')
 }
 
-let _app = express()
 let _server = null
 
 function _start() {
+  let _app = express()
   _app.use('/healthcheck', physical.middleware({
     dependencies: [
       { name: 'google', checker: () => physical.http.check('http://google.com/') },
@@ -23,7 +23,14 @@ function _start() {
   _app.use('/failures', physical.middleware({
     dependencies: [
       { name: 'google', checker: () => physical.http.check('http://google.com/') },
-      { name: 'broken', checker: () => physical.http.check('http://httpstat.us/500')}
+      { name: 'broken', checker: () => physical.http.check('http://httpstat.us/500') }
+    ]
+  }))
+
+  _app.use('/optional', physical.middleware({
+    dependencies: [
+      { name: 'google', checker: () => physical.http.check('http://google.com/') },
+      { name: 'optional', checker: () => physical.http.check('http://httpstat.us/500'), optional: true }
     ]
   }))
 
