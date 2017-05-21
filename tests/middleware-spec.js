@@ -60,7 +60,7 @@ describe('Physical middleware', () => {
     try {
       await app.start()
       let response = await request('http://localhost:9090/embed', { json: true })
-      expect(response.downstream.dependencies).toBeDefined()
+      expect(response.downstream.dependencies).toEqual(jasmine.any(Object))
     } finally {
       await app.stop
     }
