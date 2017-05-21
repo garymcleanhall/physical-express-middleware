@@ -49,7 +49,7 @@ describe('Physical middleware', () => {
   it('returns 200 if downstream dependency fails but it is marked optional', testAsync(async () => {
     try {
       await app.start()
-      let response = await request('http://localhost:9090/optional', { resolveWithFullResponse: true, simple: false })
+      let response = await request('http://localhost:9090/optional2', { resolveWithFullResponse: true, simple: false })
       expect(response.statusCode).toEqual(200)
     } finally {
       await app.stop()
