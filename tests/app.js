@@ -46,6 +46,12 @@ function _start() {
     ]
   }))
 
+  _app.use('/embed', physical.middleware({
+    dependencies: [
+      { name: 'downstream', checker: () => physical.http.check('http://localhost:9090/optional2', { embed: true }) }
+    ]
+  }))
+
   _server = _app.listen(9090)
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "physical-express-middleware",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Middleware for express to adapt Physical's downstream dependency checks to responses",
   "main": "index.js",
   "scripts": {

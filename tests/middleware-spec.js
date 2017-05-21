@@ -55,4 +55,14 @@ describe('Physical middleware', () => {
       await app.stop()
     }
   }))
+
+  it('includes downstream dependency if it is marked `embed`', testAsync(async () => {
+    try {
+      await app.start()
+      let response = await request('http://localhost:9090/embed', { json: true })
+      expect(response.downstream.dependencies).toBeDefined()
+    } finally {
+      await app.stop
+    }
+  }))
 })

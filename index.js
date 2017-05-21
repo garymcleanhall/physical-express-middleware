@@ -4,7 +4,11 @@ module.exports = (config) => {
   return async (request, response, next) => {
     
     let checkers = await Promise.all(config.dependencies.reduce((accumulator, current) => {
-      accumulator.push(current.checker().then(result => Object.assign({ result }, current)))
+      accumulator.push(
+        current.checker()
+          .then(result => Object.assign({ result }, current)
+        )
+      )
       return accumulator
     }, []))
 
@@ -18,6 +22,7 @@ module.exports = (config) => {
     response
       .status(status ? 200 : 500)
       .send(healthchecks)
+      
     next()
   }
 } 
