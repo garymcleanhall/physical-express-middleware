@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (config) => {
-  return async (request, response, next) => {
+  return async (request, response) => {
     
     let checkers = await Promise.all(config.dependencies.reduce((accumulator, current) => {
       accumulator.push(
@@ -19,10 +19,8 @@ module.exports = (config) => {
 
     let status = checkers.every(item => item.result.isOk || item.optional)
 
-    response
+    return response
       .status(status ? 200 : 500)
       .send(healthchecks)
-      
-    next()
   }
 } 
